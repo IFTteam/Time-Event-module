@@ -36,7 +36,7 @@ public class SimulateNewEvent implements Runnable{
             for (TimeTask timeTask : timeTasks){
                 time.setTime(timeTask.getTriggerTime());
                 Event event = new Event(time,timeTask.getId());
-                timeTask.setTask_status(1);
+                timeTask.setTaskStatus(1);
                 timeDelayRepository.save(timeTask);
 
                 redisTemplate.opsForList().leftPush(inQueueKey,event);

@@ -19,16 +19,9 @@ public class TimeEventController {
     }
 
     @PostMapping("/addNewTask")
-    public TimeTask add(@RequestParam("node_id")Long nodeId,
-                        @RequestParam("journey_id")Long journeyId,
-                        @RequestParam("user_id")Long userId,
-                        @RequestParam("audience_id")Long audienceId,
-                        @RequestParam("repeat")Integer repeat,
-                        @RequestParam("trigger_time") Long triggerTime,
-                        @RequestParam("target_node_id")Long targetNodeId,
-                        @RequestParam("repeat_interval")String repeatInterval){
+    public TimeTask add(TimeTask timeTask){
 
-        TimeTask timeTask = new TimeTask(nodeId,journeyId,userId,repeat,repeatInterval,targetNodeId,triggerTime,0,audienceId);
+
         return timeDelayRepository.save(timeTask);
     }
 
