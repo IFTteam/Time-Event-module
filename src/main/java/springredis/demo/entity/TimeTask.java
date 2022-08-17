@@ -1,5 +1,6 @@
 package springredis.demo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.relational.core.sql.In;
 
@@ -13,6 +14,7 @@ import java.util.Date;
 
 @Entity
 @Data
+
 public class TimeTask extends BaseTaskEntity {
     @Id
     @GeneratedValue
@@ -26,6 +28,8 @@ public class TimeTask extends BaseTaskEntity {
     private Long triggerTime;
 
     private Integer taskStatus;
+
+
     //status of the task
     //0-in sql db, 1-in heap, 2-task complete, -1-task cancelled
 }
