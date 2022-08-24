@@ -27,11 +27,11 @@ public class TimeEventController {
     }
 
     @PostMapping("/addNewTask")
-    public TimeTask add(BaseTaskEntity baseTaskEntity){
+    public TimeTask add(@RequestBody BaseTaskEntity baseTaskEntity){
         Optional<Node> node = nodeRepository.findById(baseTaskEntity.getNodeId());
         Node node1 = node.get();
         String fstring = node1.getName();
-        TimeTask timeTask = new TimeTask();
+        TimeTask timeTask = (TimeTask) baseTaskEntity;
         parseFString(fstring,timeTask);
 
 

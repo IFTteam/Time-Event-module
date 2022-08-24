@@ -32,7 +32,7 @@ public class OutAPICaller implements Runnable{
     public void run() {
         while (redisTemplate.opsForList().size(outQueueKey)>0){
             HashMap outEvent = ((HashMap) redisTemplate.opsForList().rightPop(outQueueKey));
-            Long id = (long) outEvent.get(idKey);
+            Long id = ((Number)outEvent.get(idKey)).longValue();
             Optional<TimeTask> timeTaskOp = timeDelayRepository.findById(id);
             if (timeTaskOp.isPresent()){
                 String result = restTemplate.postForObject(url, timeTaskOp.get(),String.class);

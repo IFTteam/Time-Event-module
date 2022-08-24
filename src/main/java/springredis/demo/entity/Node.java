@@ -1,82 +1,61 @@
 package springredis.demo.entity;
 
+import io.netty.util.internal.StringUtil;
 import lombok.Data;
+import org.apache.tomcat.util.buf.StringUtils;
+import org.yaml.snakeyaml.util.ArrayUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
 @Entity
+@Data
+@Table
 public class Node extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;
+
+    private Long frontEndId;
     private String name;
     private String type;
 
     private Integer headOrTail;
     private String status;
 
+    @Transient
     private List<Long> nexts;
+    @Transient
     private List<Long> lasts;
 
-    public Long getId() {
-        return id;
-    }
+    private String sNexts;
+    private String sLasts;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    //Make Sure that sNexts is not empty when call this. sNexts->nexts
+    public void nextsDeserialize(){
+        nexts = new ArrayList<>();
+        String[] s = sNexts.split(" ");
+        for (String value : s) {
+            if(!value.isEmpty()){
+                nexts.add(Long.parseLong(value));
+            }
 
-    public String getType() {
-        return type;
+        }
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getHeadOrTail() {
-        return headOrTail;
-    }
-
-    public void setHeadOrTail(Integer headOrTail) {
-        this.headOrTail = headOrTail;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public List<Long> getNexts() {
-        return nexts;
-    }
-
-    public void setNexts(List<Long> nexts) {
-        this.nexts = nexts;
-    }
-
-    public List<Long> getLasts() {
-        return lasts;
-    }
-
-    public void setLasts(List<Long> lasts) {
-        this.lasts = lasts;
+    //nexts->sNexts
+    public void nextsSerialize(){
+        StringBuffer buffer = new StringBuffer();
+        for(Long num:nexts){
+            buffer.append(num.toString());
+        }
+        sNexts = buffer.toString();
     }
 
     public Node() {
