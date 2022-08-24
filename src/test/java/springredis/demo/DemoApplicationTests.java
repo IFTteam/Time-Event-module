@@ -35,12 +35,10 @@ class DemoApplicationTests {
 
 
 		SimulateNewEvent simulateNewEvent = new SimulateNewEvent(timeDelayRepository, redisTemplate);
-		SimulateHeapKeeper simulateHeapKeeper = new SimulateHeapKeeper(redisTemplate);
-		OutAPICaller outAPICaller = new OutAPICaller(timeDelayRepository, redisTemplate);
+
 
 		new Thread(simulateNewEvent).start();
-		new Thread(simulateHeapKeeper).start();
-		new Thread(outAPICaller).start();
+
 		while (true){
 
 		}

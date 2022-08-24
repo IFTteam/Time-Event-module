@@ -28,6 +28,7 @@ public class OutAPICaller implements Runnable{
         this.redisTemplate = redisTemplate;
     }
 
+    //Debug??? connection with core module?
     @Override
     public void run() {
         while (redisTemplate.opsForList().size(outQueueKey)>0){

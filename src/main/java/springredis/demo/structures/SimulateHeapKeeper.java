@@ -39,6 +39,7 @@ public class SimulateHeapKeeper implements Runnable{
                 }
 
                 while (redisTemplate.opsForList().size(inQueueKey)>0){
+                    //maybe set a max loops
                     HashMap outEvent = ((HashMap) redisTemplate.opsForList().rightPop(inQueueKey));
                     Date time = new Date ((Integer) outEvent.get(timeKey));
                     Integer id = (Integer) outEvent.get(idKey);

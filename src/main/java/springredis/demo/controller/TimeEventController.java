@@ -38,6 +38,7 @@ public class TimeEventController {
         return timeDelayRepository.save(timeTask);
     }
 
+    // need modification for set time trigger
     private void parseFString(String fstring, TimeTask timeTask) {
         // fstring format "DelayTimeInSecond repeatTimes repeatInterval"
         // repeatInterval format "y m d"

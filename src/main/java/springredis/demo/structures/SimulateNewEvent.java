@@ -28,7 +28,7 @@ public class SimulateNewEvent implements Runnable{
 
     @Override
     public void run() {
-        int timeAhead = 1200000;//the time before the task trigger that we bring a task from sql to redis(ms)
+        int timeAhead = 0;//the time before the task trigger that we bring a task from sql to redis(ms)
         int scanInterval = 10000;
         while(true){
             Date time = new Date();
