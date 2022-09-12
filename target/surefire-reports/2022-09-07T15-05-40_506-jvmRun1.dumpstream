@@ -1,0 +1,21 @@
+# Created at 2022-09-07T15:07:27.196
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:398)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+
+
+# Created at 2022-09-07T15:07:27.227
+Unexpected IOException with stream: 2022-09-07 15:07:27.226  INFO 41440 --- [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2022-09-07T15:07:27.237
+Unexpected IOException with stream: 2022-09-07 15:07:27.236  INFO 41440 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+
+
+# Created at 2022-09-07T15:07:27.251
+Unexpected IOException with stream: 2022-09-07 15:07:27.250  INFO 41440 --- [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+

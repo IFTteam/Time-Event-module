@@ -10,6 +10,7 @@ import springredis.demo.repository.TimeDelayRepository;
 
 import java.nio.file.OpenOption;
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +32,13 @@ public class TimeEventController {
         Optional<Node> node = nodeRepository.findById(baseTaskEntity.getNodeId());
         Node node1 = node.get();
         String fstring = node1.getName();
-        TimeTask timeTask = (TimeTask) baseTaskEntity;
-        parseFString(fstring,timeTask);
+        TimeTask timeTask = new TimeTask(baseTaskEntity);
+        timeTask.setTaskStatus(0);
+        parseFString(fstring, timeTask);
+
+        //auditing support
+        timeTask.setCreatedAt(LocalDateTime.now());
+        timeTask.setCreatedBy("TimeModule");
 
 
         return timeDelayRepository.save(timeTask);

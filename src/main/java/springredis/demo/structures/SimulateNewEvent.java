@@ -32,6 +32,9 @@ public class SimulateNewEvent implements Runnable{
         int scanInterval = 10000;
         while(true){
             Date time = new Date();
+            System.out.println(time.getTime());
+
+            System.out.println(time.getTime());
             List<TimeTask> timeTasks = timeDelayRepository.findTasksBeforeTime(time.getTime()+timeAhead);
             for (TimeTask timeTask : timeTasks){
                 time.setTime(timeTask.getTriggerTime());

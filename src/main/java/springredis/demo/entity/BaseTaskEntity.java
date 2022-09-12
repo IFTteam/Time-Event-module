@@ -1,7 +1,10 @@
 package springredis.demo.entity;
 
+import lombok.NoArgsConstructor;
 
-public class BaseTaskEntity {
+
+@NoArgsConstructor
+public class BaseTaskEntity extends BaseEntity{
 
     //这三个是CoreModule的Key,无需处理直接返回即可
     private Long activeAudienceId;
@@ -12,6 +15,17 @@ public class BaseTaskEntity {
     private Long journeyId;
     private Long userId;
     private Long audienceId;
+
+    public BaseTaskEntity(BaseTaskEntity baseTaskEntity){
+        super();
+        this.activeAudienceId = baseTaskEntity.getActiveAudienceId();
+        this.targetNodeId = baseTaskEntity.getTargetNodeId();
+        this.sourceNodeId = baseTaskEntity.getSourceNodeId();
+        this.nodeId = baseTaskEntity.getNodeId();
+        this.journeyId = baseTaskEntity.getJourneyId();
+        this.userId = baseTaskEntity.getUserId();
+        this.audienceId = baseTaskEntity.getAudienceId();
+    }
 
     public Long getActiveAudienceId() {
         return activeAudienceId;

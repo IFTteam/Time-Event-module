@@ -2,19 +2,18 @@ package springredis.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.relational.core.sql.In;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 
 
 @Entity
 @Data
-
+@NoArgsConstructor
+@Table(name="time_task")
 public class TimeTask extends BaseTaskEntity {
     @Id
     @GeneratedValue
@@ -28,6 +27,10 @@ public class TimeTask extends BaseTaskEntity {
     private Long triggerTime;
 
     private Integer taskStatus;
+
+    public TimeTask(BaseTaskEntity baseTaskEntity){
+        super(baseTaskEntity);
+    }
 
 
     //status of the task
