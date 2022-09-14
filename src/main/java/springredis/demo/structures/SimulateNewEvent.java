@@ -2,6 +2,7 @@ package springredis.demo.structures;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.client.RestTemplate;
 import springredis.demo.entity.Event;
 import springredis.demo.entity.TimeTask;
 import springredis.demo.repository.TimeDelayRepository;
@@ -15,6 +16,7 @@ public class SimulateNewEvent implements Runnable{
 
     private TimeDelayRepository timeDelayRepository;
     private RedisTemplate redisTemplate;
+    private RestTemplate restTemplate = new RestTemplate();
 
     public SimulateNewEvent(TimeDelayRepository timeDelayRepository, RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
@@ -44,6 +46,9 @@ public class SimulateNewEvent implements Runnable{
 
                 redisTemplate.opsForList().leftPush(inQueueKey,event);
                 System.out.println("Insert New Event at"+time);
+
+                //TODO: return response to Core Module with taskEntity
+                restTemplate.postForObject("http://localhost:8081/ReturnTask", timeTask, String.class);
             }
 
 
